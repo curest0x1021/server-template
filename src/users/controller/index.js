@@ -1,6 +1,6 @@
 const Bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 
 const config = require('../../../config');
 const schemes = require('../models/mongoose');
@@ -61,7 +61,7 @@ const verify = async (res, parameters) => {
 
     try {
       // check wallet address exists
-      const query = schemes.WalletAddress.query({ address: walletAddress });
+      const query = schemes.WalletAddress.where({ address: walletAddress });
       const row = await query.findOne();
       if (!row) {
         await newWallet.save();
@@ -70,7 +70,7 @@ const verify = async (res, parameters) => {
         .status(200)
         .json({ message: 'Transaction has been verified!' });
     } catch (error) {
-      return res.status(400).json({ status: 400, message: error });
+      return res.status(400).json({ status: 400, message: error.toString() });
     }
   }
   return res
