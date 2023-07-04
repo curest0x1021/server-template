@@ -9,6 +9,11 @@ const schemas = {
     name: Joi.string().required(),
     lastName: Joi.string().required(),
   }),
+  verify: Joi.object().keys({
+    transaction: Joi.string().required(),
+    walletAddress: Joi.string().required(),
+    text: Joi.string().required(),
+  }),
 };
 
 module.exports = schemas;

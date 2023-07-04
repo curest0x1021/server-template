@@ -23,6 +23,19 @@ const User = mongoose.model(
   'users'
 );
 
+const WalletAddress = mongoose.model(
+  'WalletAddress',
+  {
+    address: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+  },
+  'walletaddresses'
+);
+
 module.exports = {
   User,
+  WalletAddress,
 };

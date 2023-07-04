@@ -14,4 +14,12 @@ router.post(
   }
 );
 
+router.post(
+  '/api/v1/verify',
+  validateSchemas.inputs(schemas.verify, 'body'),
+  (req, res) => {
+    controller.verify(res, req.body);
+  }
+);
+
 module.exports = router;
